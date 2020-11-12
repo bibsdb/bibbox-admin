@@ -19,6 +19,23 @@ services:
       MYSQL_USER: db
       MYSQL_PASSWORD: db
       MYSQL_DATABASE: db
+    volumes:
+      - db-data:/var/lib/mysql
+
+  db-backup:
+    image: databack/mysql-backup
+    networks:
+      - app
+    depends_on:
+      - mariadb
+    volumes:
+      - /home/dkagms/bibbox-admin-backup:/db
+    environment:
+      - DB_DUMP_TARGET=/db
+      - DB_USER=db
+      - DB_PASS=db
+      - DB_SERVER=mariadb
+      - DB_DUMP_BEGIN=+3
 
   phpfpm:
     image: itkdev/php7.2-fpm:latest
@@ -67,3 +84,4 @@ services:
 # Drush cache volume to persist cache between runs.
 volumes:
   drush-cache:
+  db-data:
