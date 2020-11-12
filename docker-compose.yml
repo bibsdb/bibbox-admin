@@ -64,15 +64,6 @@ services:
     environment:
       - MEMCACHED_CACHE_SIZE=64
 
-  mailhog:
-    image: mailhog/mailhog
-    networks:
-      - app
-    restart: always
-    ports:
-      - "1025"
-      - "8025"
-
 # Drush cache volume to persist cache between runs.
 volumes:
   drush-cache:
