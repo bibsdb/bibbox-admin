@@ -312,21 +312,30 @@ class Proxy {
           'idleWarn' => $this->parseInt($node->get('field_timeout_idle')->value),
         ],
         'binSorting' => [
-          'default_bin' => $node->get('field_bin_default')->value ? 'left' : 'right',
+          'default_bin' => 'three',
           'destinations' => [
-            'left' => [
-              'id' => 'left',
-              'background_color' => $node->get('field_bin_left_background_color')->value,
-              'color' => $node->get('field_bin_left_color')->value,
+            'one' => [
+              'id' => 'one',
+              'background_color' => null,
+              'color' => 'gray',
             ],
-            'right' => [
-              'id' => 'right',
-              'background_color' => $node->get('field_bin_right_background_color')->value,
-              'color' => $node->get('field_bin_right_color')->value,
+            'two' => [
+              'id' => 'two',
+              'background_color' => null,
+              'color' => 'purple',
+            ],
+            'three' => [
+              'id' => 'three',
+              'background_color' => null,
+              'color' => 'pink',
             ]
           ],
-          // Will be attached later.
-          "bins" => []
+          // Will be attached later. (No they won't /bibsdb)
+          'bins' => [
+            '1' => 'one',
+            '2' => 'two',
+            '0' => 'three',
+          ]
         ],
         'display_more_materials' => $this->parseBoolean($node->get('field_image_more_materials')->value),
         'display_fines' => $this->parseBoolean($node->get('field_display_fines')->value),
@@ -440,6 +449,7 @@ class Proxy {
       }
     }
 
+    /* Bibsdb - Allow to have three bins
     // Attach bins to binSorting.
     foreach ($node->get('field_bin_left') as $item) {
       $machine['ui']['binSorting']['bins']["" . $item->value] = 'left';
@@ -447,6 +457,7 @@ class Proxy {
     foreach ($node->get('field_bin_right') as $item) {
       $machine['ui']['binSorting']['bins']["" . $item->value] = 'right';
     }
+    */
 
     // Attach features.
     if (count($node->get('field_features'))) {
