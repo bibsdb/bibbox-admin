@@ -317,17 +317,17 @@ class Proxy {
             'one' => [
               'id' => 'one',
               'background_color' => null,
-              'color' => 'gray',
+              'color' => 'black',
             ],
             'two' => [
               'id' => 'two',
               'background_color' => null,
-              'color' => 'purple',
+              'color' => 'black',
             ],
             'three' => [
               'id' => 'three',
               'background_color' => null,
-              'color' => 'pink',
+              'color' => 'black',
             ]
           ],
           // Will be attached later. (No they won't /bibsdb)
